@@ -1,4 +1,4 @@
-pub const std = @import("std");
+const std = @import("std");
 
 /// XORs input with a key. Same function can encrypt or decrypt.
 pub fn xor(input: []u8, key: []const u8) void {
@@ -8,7 +8,8 @@ pub fn xor(input: []u8, key: []const u8) void {
     }
 }
 
-pub fn xorInMemory(input: *anyopaque, input_size: usize, key: []const u8, output: *anyopaque, allocator: std.heap.Allocator) void {
+pub fn xorInMemory(input: *anyopaque, input_size: usize, key: []const u8, output: *anyopaque) void {
+    const allocator = std.heap.page_allocator;
     const decrypted = try allocator.alloc(u8, input_size);
     std.mem.copyForwards(u8, decrypted, input);
     xor(decrypted, key);
