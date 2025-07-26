@@ -20,6 +20,10 @@ Add following to main.zig
 
 ```zig
 const x = @import("zigxor");
+const input_ptr: [*]u8 = @ptrCast(@constCast(input.ptr));
+const output_ptr: [*]u8 = @ptrCast(@constCast(output.ptr));
+const key = "WXYZ";
+try xorInMemory(input_ptr, input.len, key, output_ptr);
 ```
 
 # Credits
