@@ -1,4 +1,4 @@
-const std = @import("std");
+pub const std = @import("std");
 
 /// XORs input with a key. Same function can encrypt or decrypt.
 pub fn xor(input: []u8, key: []const u8) void {
